@@ -63,6 +63,13 @@ rules and tells staff.
 in `redact.ts` (and add them in each partner language), the disclosure reply in
 `flow.ts`, and the referral route behind "a trusted adult will follow up".
 
+## The database (`supabase/`)
+
+The data model for the coach portal, the WhatsApp bot and impact reporting is designed
+and tested but not yet deployed. Read [docs/data-model.md](docs/data-model.md) for what
+is stored, who can see what, and the decisions the board needs to make.
+Run the tests with `scripts/test-db.sh` (needs a local PostgreSQL).
+
 ## Run it
 
 ```bash
@@ -100,7 +107,8 @@ environment variables from `.env.example` under Settings > Environment Variables
 ## Next phases
 
 1. Move content into **Sanity** so staff can edit stories, guides and translations.
-2. Add **Supabase** (database, coach logins, consent records) and the coach portal.
+2. Deploy the **Supabase** database (designed and tested in `supabase/`) and build the
+   coach portal on it.
 3. Connect the **WhatsApp** provider (Turn.io or Glific) to `lib/bot/flow.ts`, with
    conversations stored in the data core under the consent and retention rules.
 

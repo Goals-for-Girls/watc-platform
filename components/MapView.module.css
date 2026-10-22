@@ -1,0 +1,101 @@
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tabs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 16px;
+  border: 2px solid var(--chalk-line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tabs a:hover {
+  border-color: var(--ink-soft);
+}
+
+.tabs a[aria-current="page"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.note {
+  margin-top: 10px;
+  font-size: var(--t-small);
+  color: var(--ink-soft);
+}
+
+.h2 {
+  margin-top: 48px;
+  font-size: 1.5rem;
+}
+
+.places {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0 40px;
+}
+
+@media (min-width: 720px) {
+  .places {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1080px) {
+  .places {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.place {
+  padding-block: 18px;
+  border-top: 1px solid var(--chalk-line);
+  scroll-margin-top: 24px;
+}
+
+.place:target {
+  background: var(--chalk);
+  box-shadow: 0 0 0 12px var(--chalk);
+  border-radius: 2px;
+}
+
+.place h3 {
+  font-size: 1.125rem;
+}
+
+.projects {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.projects li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.75rem;
+}

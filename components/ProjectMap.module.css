@@ -1,0 +1,34 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--chalk);
+}
+
+.base,
+.pins {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pin circle {
+  fill: var(--ink);
+  stroke: #fff;
+  stroke-width: 2.5;
+}
+
+.pin text {
+  fill: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+a:hover .pin circle,
+a:focus-visible .pin circle {
+  fill: var(--pitch);
+}

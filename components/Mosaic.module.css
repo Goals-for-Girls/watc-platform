@@ -1,0 +1,44 @@
+.mosaic {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  gap: 6px;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 1;
+  padding: 8px 9px 9px;
+  border-radius: var(--radius-s);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.tile:hover {
+  color: inherit;
+  outline: 3px solid var(--ink);
+  outline-offset: -3px;
+}
+
+.number {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.125rem;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 0.78rem;
+  line-height: 1.15;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

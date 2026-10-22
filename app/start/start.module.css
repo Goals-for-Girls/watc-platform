@@ -1,0 +1,50 @@
+.steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 24px 0 0;
+  padding: 0;
+  max-width: 720px;
+}
+
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  column-gap: 16px;
+  padding-block: 18px;
+  border-top: 1px solid var(--chalk-line);
+}
+
+.steps li::before {
+  content: counter(step);
+  grid-row: span 2;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--pitch);
+}
+
+.steps h3 {
+  font-size: 1.125rem;
+}
+
+.steps p {
+  margin-top: 6px;
+  color: var(--ink-soft);
+}
+
+.orgs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 32px;
+  border-radius: var(--radius-m);
+  background: var(--chalk);
+  max-width: 720px;
+}
+
+.orgs p {
+  max-width: 56ch;
+}

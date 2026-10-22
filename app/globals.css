@@ -1,0 +1,193 @@
+/*
+ * We Are the Change — design tokens and base styles.
+ *
+ * Color carries meaning here: the only saturated colors on the site are the
+ * 17 SDG colors, so a color always tells you which goal a project serves.
+ * The chrome stays ink, paper, chalk and one pitch green for actions.
+ */
+
+:root {
+  --ink: #17152b;
+  --ink-soft: #55536a;
+  --paper: #ffffff;
+  --chalk: #eef0eb;
+  --chalk-line: #d9ddd4;
+  --pitch: #12603f;
+  --pitch-deep: #0c4a30;
+  --focus: #2457e6;
+
+  --font-display: "Unbounded Variable", "Arial Black", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Type scale: 18px body, ratio ~1.25 */
+  --t-small: 0.875rem;
+  --t-body: 1.125rem;
+  --t-lead: 1.3125rem;
+  --t-h3: 1.375rem;
+  --t-h2: clamp(1.625rem, 3.2vw, 2.125rem);
+  --t-h1: clamp(2.375rem, 6.4vw, 4.5rem);
+
+  --gutter: 16px;
+  --measure: 66ch;
+  --page: 1180px;
+  --radius-s: 6px;
+  --radius-m: 12px;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --gutter: 32px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: var(--t-h1);
+  font-weight: 760;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: var(--t-h2);
+  font-weight: 680;
+}
+
+h3 {
+  font-size: var(--t-h3);
+  font-weight: 620;
+  line-height: 1.2;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--pitch);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1.5px;
+}
+
+a:hover {
+  color: var(--pitch-deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+.page {
+  width: 100%;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.prose {
+  max-width: var(--measure);
+}
+
+.muted {
+  color: var(--ink-soft);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 48px;
+  padding: 0.7em 1.25em;
+  border-radius: 999px;
+  border: 2px solid var(--pitch);
+  background: var(--pitch);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--pitch-deep);
+  border-color: var(--pitch-deep);
+  color: #fff;
+}
+
+.button.quiet {
+  background: transparent;
+  color: var(--pitch);
+}
+
+.button.quiet:hover {
+  background: var(--chalk);
+  color: var(--pitch-deep);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip-link:focus {
+  left: var(--gutter);
+  top: 8px;
+  z-index: 10;
+  background: var(--paper);
+  padding: 8px 12px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

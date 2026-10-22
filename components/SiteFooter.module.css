@@ -1,0 +1,33 @@
+.footer {
+  margin-top: 96px;
+  background: var(--ink);
+  color: #e9e8f2;
+}
+
+.inner {
+  display: grid;
+  gap: 24px;
+  padding-block: 40px 48px;
+}
+
+@media (min-width: 820px) {
+  .inner {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: start;
+  }
+}
+
+.mission {
+  max-width: 52ch;
+}
+
+.footer a {
+  color: #fff;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 700;
+}

@@ -1,0 +1,46 @@
+.inner {
+  padding-block: 48px 0;
+}
+
+@media (min-width: 960px) {
+  .inner {
+    padding-top: 64px;
+  }
+}
+
+.head {
+  margin-bottom: 36px;
+}
+
+.head h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.lead {
+  margin-top: 16px;
+  font-size: var(--t-lead);
+  max-width: 52ch;
+}
+
+.section {
+  margin-top: 56px;
+}
+
+.section h2 {
+  margin-bottom: 16px;
+}
+
+.prose p + p,
+.prose p + ul,
+.prose ul + p {
+  margin-top: 1em;
+}
+
+.prose ul {
+  padding-left: 1.2em;
+  margin: 0;
+}
+
+.prose li + li {
+  margin-top: 0.5em;
+}

@@ -119,6 +119,15 @@ select tests.fails($$select public.set_participant_identity('40000000-0000-0000-
   'coach cannot change another team''s girl''s details');
 select tests.fails($$insert into public.participants (team_id, birth_year, birth_month, country) values ('30000000-0000-0000-0000-00000000000b', 2012, 1, 'ZA')$$,
   'coach cannot add a girl to another team');
+insert into public.teams (org_id, coach_member_id, name, country, place) values
+  ('10000000-0000-0000-0000-00000000000a', '20000000-0000-0000-0000-00000000000d', 'Team A2', 'IN', 'Hyderabad');
+select tests.ok((select count(*) from public.teams) = 2, 'coach can create a team for herself');
+select tests.fails($$insert into public.teams (org_id, coach_member_id, name, country, place) values
+  ('10000000-0000-0000-0000-00000000000b', '20000000-0000-0000-0000-00000000000d', 'Sneaky', 'ZA', 'Johannesburg')$$,
+  'coach cannot create a team in another organization');
+select tests.fails($$insert into public.teams (org_id, coach_member_id, name, country, place) values
+  ('10000000-0000-0000-0000-00000000000a', '20000000-0000-0000-0000-00000000000e', 'Not mine', 'IN', 'Hyderabad')$$,
+  'coach cannot create a team assigned to another coach');
 reset role;
 
 -- ---------------------------------------------------------------------------

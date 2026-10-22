@@ -2,7 +2,7 @@
   "name": "watc-platform",
   "version": "0.1.0",
   "private": true,
-  "description": "We Are the Change \u2014 a Goals for Girls program. Public project library and map.",
+  "description": "We Are the Change — a Goals for Girls program. Public project library and map.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,6 +13,8 @@
     "@anthropic-ai/sdk": "^1.1.0",
     "@fontsource-variable/unbounded": "^5.2.5",
     "@fontsource/atkinson-hyperlegible": "^5.2.5",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
     "d3-geo": "^3.1.1",
     "next": "16.4.2",
     "react": "19.3.1",

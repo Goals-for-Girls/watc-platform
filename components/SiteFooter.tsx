@@ -16,6 +16,7 @@ export function SiteFooter() {
           <Link href="/demo/">Try the bot</Link>
           <Link href="/safety/">Safety and reporting a concern</Link>
           <Link href="/start/">Start a project</Link>
+          <Link href="/portal/">Coach sign-in</Link>
         </nav>
       </div>
     </footer>

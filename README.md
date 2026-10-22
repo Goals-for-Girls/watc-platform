@@ -19,6 +19,7 @@ Recommendation* document.
 | Safety rules and Report a Concern | `/safety/` |
 | How starting a project will work (2027) | `/start/` |
 | Working bot demo, with the staff view beside it | `/demo/` |
+| Coach portal: teams, girls, consent, plan approval, progress | `/portal/` (not indexed) |
 
 ## Stack
 
@@ -69,6 +70,26 @@ The data model for the coach portal, the WhatsApp bot and impact reporting is de
 and tested but not yet deployed. Read [docs/data-model.md](docs/data-model.md) for what
 is stored, who can see what, and the decisions the board needs to make.
 Run the tests with `scripts/test-db.sh` (needs a local PostgreSQL).
+
+## The coach portal (`app/portal/`, `lib/portal/`)
+
+Coaches and partner organizations sign in with an emailed link (no passwords; only
+invited people can sign in). They can:
+
+- add teams, and add girls with only first name, birth month and year, and a guardian
+- record consent from the signed form, and record withdrawals (never edit or delete)
+- see a to-do list: consent missing, plans waiting, check-ins due, girls turning 18
+- review and approve the plan a team drafted with the bot, and log progress
+
+The pages talk to one interface (`lib/portal/types.ts`) with two stores:
+
+- `demo-store.ts`: made-up teams and girls in server memory, used until Supabase is
+  configured. Lets anyone preview the portal; resets on restart.
+- `supabase-store.ts`: the real database, as the signed-in coach. It never filters for
+  permissions itself; the database's access rules decide what each person sees.
+
+`proxy.ts` keeps sessions fresh and sends signed-out visitors to the sign-in page (only
+once Supabase is configured).
 
 ## Run it
 

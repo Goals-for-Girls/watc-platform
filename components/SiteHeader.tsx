@@ -12,6 +12,7 @@ export function SiteHeader() {
         <nav aria-label="Main" className={styles.nav}>
           <Link href="/projects/">Projects</Link>
           <Link href="/map/">Map</Link>
+          <Link href="/demo/">Try the bot</Link>
           <Link href="/safety/">Safety</Link>
           <Link href="/start/" className={styles.start}>
             Start a project

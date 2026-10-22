@@ -47,6 +47,12 @@ export default function StartPage() {
         </ol>
       </section>
 
+      <p className={styles.section}>
+        <Link href="/demo/" className="button quiet">
+          Try a demo of the bot
+        </Link>
+      </p>
+
       <section className={`${styles.section} ${own.orgs}`} aria-labelledby="orgs">
         <h2 id="orgs">Run a girls&apos; program?</h2>
         <p>

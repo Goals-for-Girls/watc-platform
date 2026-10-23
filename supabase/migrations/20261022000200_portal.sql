@@ -9,6 +9,9 @@ returns setof uuid language sql stable security definer set search_path = '' as 
   where m.user_id = auth.uid() and m.role = r and m.active;
 $$;
 
+revoke execute on function public.my_member_ids(public.app_role) from public, anon;
+grant execute on function public.my_member_ids(public.app_role) to authenticated;
+
 -- Coaches can create teams for themselves, inside their own organization.
 create policy teams_coach_insert on public.teams for insert to authenticated
   with check (

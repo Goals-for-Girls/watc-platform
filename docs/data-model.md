@@ -88,7 +88,6 @@ Tested in `supabase/tests/10_access_and_gates_test.sql` (37 checks):
 | How long chat text is kept | 12 months, then cleared | Needed for moderation and support, not for impact data |
 | How long a withdrawn girl's identity is kept | 30 days, then deleted | Her pseudonymous impact data stays |
 | Safeguarding case records | Reviewed after 7 years | Practice varies by country; confirm with the safeguarding specialist |
-| Hosting region | Closest to most participants (Mumbai, while India leads) | Speed, and comfort for Indian partners under the DPDP Act |
 | How guardian consent is verified in each country | Paper form held by the partner, or a WhatsApp confirmation from the guardian's number | India's DPDP Rules require *verifiable* parental consent |
 | Who holds the safeguarding lead role, and the deputy | To name | The role sees everything; keep it to two people |
 
@@ -96,9 +95,17 @@ These are in `retention_rules` with `approved = false` until the board signs the
 
 ## Setting it up
 
-1. Create a Supabase project in Goals for Girls' name (Pro plan, about $25 a month).
+Deployed on October 23, 2026 to Supabase project `watc-platform` (ref `xkamtudvaakmrfhvwpfo`),
+region **Frankfurt (eu-central-1)**, chosen by Ian Oliver as a middle point between India,
+Africa and the U.S. All four migration files are applied, and the live database passed the
+same access and safety checks as the local tests. It runs on the free plan; move to Pro
+(about $25 a month) before any real girl's data is stored, for daily backups and no pausing.
+
+To set up another copy:
+
+1. Create a Supabase project.
 2. Install the [Supabase CLI](https://supabase.com/docs/guides/cli), link the project,
-   and run `supabase db push`. Or paste the two migration files, in order, into the
+   and run `supabase db push`. Or paste the migration files, in order, into the
    SQL editor.
 3. Schedule `private.apply_retention()` to run daily (Supabase Cron).
 4. Keep the service-role key on the server only (Vercel environment variables).

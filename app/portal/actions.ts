@@ -134,6 +134,9 @@ export async function logMilestone(form: FormData) {
 
 /* ---------------- sign-in (live mode only) ---------------- */
 
+/** Supabase's answers when an address has no account; shown as "check your email" like any other. */
+const NOT_REGISTERED = new Set(["signup_disabled", "otp_disabled", "user_not_found"]);
+
 export async function sendSignInLink(form: FormData) {
   if (!supabaseConfigured()) redirect("/portal/");
   const email = text(form, "email", 200).toLowerCase();
@@ -144,12 +147,23 @@ export async function sendSignInLink(form: FormData) {
   const origin = process.env.NEXT_PUBLIC_SITE_URL || `${h.get("x-forwarded-proto") ?? "https"}://${h.get("host")}`;
   const supabase = await supabaseForRequest();
   // shouldCreateUser: false — only people Goals for Girls has invited can sign in.
-  await supabase.auth.signInWithOtp({
+  const { error } = await supabase.auth.signInWithOtp({
     email,
     options: { shouldCreateUser: false, emailRedirectTo: `${origin}/portal/auth/callback/` },
   });
-  // Same message whether or not the address is registered, so the page
-  // cannot be used to find out who is a coach.
+  if (error) {
+    // Logged without the address, for diagnosing delivery problems.
+    console.error("[portal] sign-in link not sent:", error.code ?? error.status, error.message);
+    // Rate limits and outages are worth telling the person about. "Not
+    // registered" is not: the page shows the same message either way, so it
+    // cannot be used to find out who is a coach.
+    if (error.code === "over_email_send_rate_limit" || error.code === "over_request_rate_limit") {
+      redirect(`/portal/login/?error=${encodeURIComponent("Too many sign-in emails have been sent in the last hour. Please wait a few minutes and try again.")}`);
+    }
+    if (!NOT_REGISTERED.has(error.code ?? "")) {
+      redirect(`/portal/login/?error=${encodeURIComponent("We couldn't send the sign-in email just now. Please try again in a few minutes.")}`);
+    }
+  }
   redirect("/portal/login/?sent=1");
 }
 

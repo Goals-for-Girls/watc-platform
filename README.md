@@ -91,6 +91,21 @@ The pages talk to one interface (`lib/portal/types.ts`) with two stores:
 `proxy.ts` keeps sessions fresh and sends signed-out visitors to the sign-in page (only
 once Supabase is configured).
 
+### Sign-in emails
+
+Public sign-ups are off in Supabase, so only invited people can sign in. Point Supabase's
+email templates (Authentication > Emails) at `/portal/auth/confirm/`, which works on any
+device and also accepts invitations:
+
+| Template | Link to use in the template |
+| --- | --- |
+| Invite user | `{{ .SiteURL }}/portal/auth/confirm/?token_hash={{ .TokenHash }}&type=invite` |
+| Magic link | `{{ .SiteURL }}/portal/auth/confirm/?token_hash={{ .TokenHash }}&type=email` |
+
+Without this, an invited coach must accept the invitation before a sign-in link will be
+sent (Supabase treats an unaccepted invitation as a new sign-up, which is switched off),
+and sign-in links only work in the browser that requested them.
+
 ## Run it
 
 ```bash

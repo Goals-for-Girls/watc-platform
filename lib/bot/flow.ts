@@ -59,7 +59,7 @@ export async function handle(state: BotState | undefined, input: BotInput, brain
 
   // Once a safety concern is raised, the bot stops the project flow.
   if (t.state.step === "paused") {
-    t.say("A member of our team will follow up with you through your coach. You can start over at any time.");
+    t.say("Someone from the Goals for Girls safety team will follow up with you soon, through an adult you can trust. You can start over at any time.");
     t.replies = [START_OVER];
     return done();
   }
@@ -129,7 +129,7 @@ export async function handle(state: BotState | undefined, input: BotInput, brain
   if (check.category === "distress_or_disclosure") {
     t.state = { step: "paused" };
     t.say(
-      "Thank you for telling me. What you shared matters, and you don't have to deal with it alone. I'm a bot, so I've passed your message to a trusted adult on the Goals for Girls team, who will follow up through your coach.",
+      "Thank you for telling me. What you shared matters, and you don't have to deal with it alone. I'm a bot, so I've passed your message to the Goals for Girls safety team. Someone from the team will follow up with you soon, through an adult you can trust.",
     );
     t.say(
       "If you are in danger right now, please tell an adult you trust, or contact your local emergency number or child helpline.",
